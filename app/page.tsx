@@ -2,11 +2,10 @@
 
 import { Loader2 } from 'lucide-react'
 import { useSearch } from '@/hooks/useSearch'
-import { SearchForm } from '@/components/search-form'
 import { CardItem } from '@/components/card-item'
+import { SearchHeader } from '@/components/search-header'
 
 export default function Page() {
-  console.log("render page")
   const { searchResults, isLoading, error, search, hasSearched } = useSearch()
 
   return (
@@ -19,11 +18,7 @@ export default function Page() {
           </div>
         </div>
       )}
-      <div className="fixed top-0 left-0 right-0 bg-white z-10 shadow-md">
-        <div className="max-w-3xl mx-auto px-4 py-4">
-          <SearchForm onSearch={search} />
-        </div>
-      </div>
+      <SearchHeader onSearch={search} />
       <div className="fixed top-[72px] bottom-0 left-0 right-0 overflow-y-auto search-results-container">
         <div className="flex flex-col items-center p-4 max-w-3xl mx-auto">
           {error && <p className="text-red-500">{error}</p>}

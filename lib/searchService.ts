@@ -16,7 +16,6 @@ export class SearchService {
   }
 
   async search(query: string, filter?: string, pageSize: number = PAGE_SIZE) {
-    console.log('filter', filter)
     if (!this.config.projectId || !this.config.dataStoreId) {
       throw new Error('Required configuration is missing. Please check PROJECT_ID and DATASTORE_ID.');
     }

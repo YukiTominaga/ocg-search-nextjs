@@ -1,4 +1,4 @@
-import { SlidersHorizontal, Check, Trash2 } from 'lucide-react'
+import { SlidersHorizontal, Trash2 } from 'lucide-react'
 import { useState } from 'react'
 import {
   Dialog,
@@ -172,10 +172,10 @@ export function SearchFilter({ onFilterChange }: SearchFilterProps) {
   }
 
   const toggleButtonClass = (isPressed: boolean) => `
-    justify-between w-full border rounded-md p-2 hover:bg-gray-100 transition-colors whitespace-nowrap text-sm
+    justify-between w-full border rounded-md p-2 transition-colors whitespace-nowrap text-sm
     ${isPressed
       ? 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700'
-      : 'border-gray-200 text-gray-700'}
+      : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-100'}
   `
 
   const handleReset = () => {
@@ -282,49 +282,39 @@ export function SearchFilter({ onFilterChange }: SearchFilterProps) {
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.normal} onPressedChange={handleToggle('normal')} className={toggleButtonClass(filters.normal)}>
                     <span>通常</span>
-                    {filters.normal && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.effect} onPressedChange={handleToggle('effect')} className={toggleButtonClass(filters.effect)}>
                     <span>効果</span>
-                    {filters.effect && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.fusion} onPressedChange={handleToggle('fusion')} className={toggleButtonClass(filters.fusion)}>
                     <span>融合</span>
-                    {filters.fusion && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.ritual} onPressedChange={handleToggle('ritual')} className={toggleButtonClass(filters.ritual)}>
                     <span>儀式</span>
-                    {filters.ritual && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.synchro} onPressedChange={handleToggle('synchro')} className={toggleButtonClass(filters.synchro)}>
                     <span>シンクロ</span>
-                    {filters.synchro && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.xyz} onPressedChange={handleToggle('xyz')} className={toggleButtonClass(filters.xyz)}>
                     <span>エクシーズ</span>
-                    {filters.xyz && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.pendulum} onPressedChange={handleToggle('pendulum')} className={toggleButtonClass(filters.pendulum)}>
                     <span>ペンデュラム</span>
-                    {filters.pendulum && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.link} onPressedChange={handleToggle('link')} className={toggleButtonClass(filters.link)}>
                     <span>リンク</span>
-                    {filters.link && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.spell} onPressedChange={handleToggle('spell')} className={toggleButtonClass(filters.spell)}>
                     <span>魔法</span>
-                    {filters.spell && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.trap} onPressedChange={handleToggle('trap')} className={toggleButtonClass(filters.trap)}>
                     <span>罠</span>
-                    {filters.trap && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
               </div>
@@ -337,35 +327,28 @@ export function SearchFilter({ onFilterChange }: SearchFilterProps) {
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.light} onPressedChange={handleToggle('light')} className={toggleButtonClass(filters.light)}>
                     <span>光属性</span>
-                    {filters.light && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.dark} onPressedChange={handleToggle('dark')} className={toggleButtonClass(filters.dark)}>
                     <span>闇属性</span>
-                    {filters.dark && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.water} onPressedChange={handleToggle('water')} className={toggleButtonClass(filters.water)}>
                     <span>水属性</span>
-                    {filters.water && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.fire} onPressedChange={handleToggle('fire')} className={toggleButtonClass(filters.fire)}>
                     <span>炎属性</span>
-                    {filters.fire && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.earth} onPressedChange={handleToggle('earth')} className={toggleButtonClass(filters.earth)}>
                     <span>地属性</span>
-                    {filters.earth && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.wind} onPressedChange={handleToggle('wind')} className={toggleButtonClass(filters.wind)}>
                     <span>風属性</span>
-                    {filters.wind && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.divine} onPressedChange={handleToggle('divine')} className={toggleButtonClass(filters.divine)}>
                     <span>神属性</span>
-                    {filters.divine && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
               </div>
@@ -378,119 +361,94 @@ export function SearchFilter({ onFilterChange }: SearchFilterProps) {
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.spellcaster} onPressedChange={handleToggle('spellcaster')} className={toggleButtonClass(filters.spellcaster)}>
                     <span>魔法使い族</span>
-                    {filters.spellcaster && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.dragon} onPressedChange={handleToggle('dragon')} className={toggleButtonClass(filters.dragon)}>
                     <span>ドラゴン族</span>
-                    {filters.dragon && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.undead} onPressedChange={handleToggle('undead')} className={toggleButtonClass(filters.undead)}>
                     <span>アンデット族</span>
-                    {filters.undead && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.warrior} onPressedChange={handleToggle('warrior')} className={toggleButtonClass(filters.warrior)}>
                     <span>戦士族</span>
-                    {filters.warrior && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.beastWarrior} onPressedChange={handleToggle('beastWarrior')} className={toggleButtonClass(filters.beastWarrior)}>
                     <span>獣戦士族</span>
-                    {filters.beastWarrior && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.beast} onPressedChange={handleToggle('beast')} className={toggleButtonClass(filters.beast)}>
                     <span>獣族</span>
-                    {filters.beast && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.wingedBeast} onPressedChange={handleToggle('wingedBeast')} className={toggleButtonClass(filters.wingedBeast)}>
                     <span>鳥獣族</span>
-                    {filters.wingedBeast && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.machine} onPressedChange={handleToggle('machine')} className={toggleButtonClass(filters.machine)}>
                     <span>機械族</span>
-                    {filters.machine && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.fiend} onPressedChange={handleToggle('fiend')} className={toggleButtonClass(filters.fiend)}>
                     <span>悪魔族</span>
-                    {filters.fiend && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.fairy} onPressedChange={handleToggle('fairy')} className={toggleButtonClass(filters.fairy)}>
                     <span>天使族</span>
-                    {filters.fairy && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.insect} onPressedChange={handleToggle('insect')} className={toggleButtonClass(filters.insect)}>
                     <span>昆虫族</span>
-                    {filters.insect && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.dinosaur} onPressedChange={handleToggle('dinosaur')} className={toggleButtonClass(filters.dinosaur)}>
                     <span>恐竜族</span>
-                    {filters.dinosaur && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.reptile} onPressedChange={handleToggle('reptile')} className={toggleButtonClass(filters.reptile)}>
                     <span>爬虫類族</span>
-                    {filters.reptile && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.fish} onPressedChange={handleToggle('fish')} className={toggleButtonClass(filters.fish)}>
                     <span>魚族</span>
-                    {filters.fish && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.seaSerpent} onPressedChange={handleToggle('seaSerpent')} className={toggleButtonClass(filters.seaSerpent)}>
                     <span>海竜族</span>
-                    {filters.seaSerpent && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.aqua} onPressedChange={handleToggle('aqua')} className={toggleButtonClass(filters.aqua)}>
                     <span>水族</span>
-                    {filters.aqua && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.pyro} onPressedChange={handleToggle('pyro')} className={toggleButtonClass(filters.pyro)}>
                     <span>炎族</span>
-                    {filters.pyro && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.thunder} onPressedChange={handleToggle('thunder')} className={toggleButtonClass(filters.thunder)}>
                     <span>雷族</span>
-                    {filters.thunder && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.rock} onPressedChange={handleToggle('rock')} className={toggleButtonClass(filters.rock)}>
                     <span>岩石族</span>
-                    {filters.rock && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.plant} onPressedChange={handleToggle('plant')} className={toggleButtonClass(filters.plant)}>
                     <span>植物族</span>
-                    {filters.plant && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.psychic} onPressedChange={handleToggle('psychic')} className={toggleButtonClass(filters.psychic)}>
                     <span>サイキック族</span>
-                    {filters.psychic && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.wyrm} onPressedChange={handleToggle('wyrm')} className={toggleButtonClass(filters.wyrm)}>
                     <span>幻竜族</span>
-                    {filters.wyrm && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.cyberse} onPressedChange={handleToggle('cyberse')} className={toggleButtonClass(filters.cyberse)}>
                     <span>サイバース族</span>
-                    {filters.cyberse && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.divineBeast} onPressedChange={handleToggle('divineBeast')} className={toggleButtonClass(filters.divineBeast)}>
                     <span>幻神獣族</span>
-                    {filters.divineBeast && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.phantomBeast} onPressedChange={handleToggle('phantomBeast')} className={toggleButtonClass(filters.phantomBeast)}>
                     <span>幻想魔族</span>
-                    {filters.phantomBeast && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
               </div>
@@ -556,43 +514,34 @@ export function SearchFilter({ onFilterChange }: SearchFilterProps) {
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.normalSpell} onPressedChange={handleToggle('normalSpell')} className={toggleButtonClass(filters.normalSpell)}>
                     <span>通常魔法</span>
-                    {filters.normalSpell && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.fieldSpell} onPressedChange={handleToggle('fieldSpell')} className={toggleButtonClass(filters.fieldSpell)}>
                     <span>フィールド魔法</span>
-                    {filters.fieldSpell && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.equipSpell} onPressedChange={handleToggle('equipSpell')} className={toggleButtonClass(filters.equipSpell)}>
                     <span>装備魔法</span>
-                    {filters.equipSpell && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.continuousSpell} onPressedChange={handleToggle('continuousSpell')} className={toggleButtonClass(filters.continuousSpell)}>
                     <span>永続魔法</span>
-                    {filters.continuousSpell && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.quickPlaySpell} onPressedChange={handleToggle('quickPlaySpell')} className={toggleButtonClass(filters.quickPlaySpell)}>
                     <span>速攻魔法</span>
-                    {filters.quickPlaySpell && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.ritualSpell} onPressedChange={handleToggle('ritualSpell')} className={toggleButtonClass(filters.ritualSpell)}>
                     <span>儀式魔法</span>
-                    {filters.ritualSpell && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.normalTrap} onPressedChange={handleToggle('normalTrap')} className={toggleButtonClass(filters.normalTrap)}>
                     <span>通常罠</span>
-                    {filters.normalTrap && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.continuousTrap} onPressedChange={handleToggle('continuousTrap')} className={toggleButtonClass(filters.continuousTrap)}>
                     <span>永続罠</span>
-                    {filters.continuousTrap && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.counterTrap} onPressedChange={handleToggle('counterTrap')} className={toggleButtonClass(filters.counterTrap)}>
                     <span>カウンター罠</span>
-                    {filters.counterTrap && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
               </div>
@@ -605,29 +554,23 @@ export function SearchFilter({ onFilterChange }: SearchFilterProps) {
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.toon} onPressedChange={handleToggle('toon')} className={toggleButtonClass(filters.toon)}>
                     <span>トゥーン</span>
-                    {filters.toon && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.dual} onPressedChange={handleToggle('dual')} className={toggleButtonClass(filters.dual)}>
                     <span>デュアル</span>
-                    {filters.dual && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.union} onPressedChange={handleToggle('union')} className={toggleButtonClass(filters.union)}>
                     <span>ユニオン</span>
-                    {filters.union && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   <Toggle pressed={filters.spirit} onPressedChange={handleToggle('spirit')} className={toggleButtonClass(filters.spirit)}>
                     <span>スピリット</span>
-                    {filters.spirit && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.tuner} onPressedChange={handleToggle('tuner')} className={toggleButtonClass(filters.tuner)}>
                     <span>チューナー</span>
-                    {filters.tuner && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                   <Toggle pressed={filters.flip} onPressedChange={handleToggle('flip')} className={toggleButtonClass(filters.flip)}>
                     <span>リバース</span>
-                    {filters.flip && <Check className="h-4 w-4 text-emerald-500" />}
                   </Toggle>
                 </div>
               </div>

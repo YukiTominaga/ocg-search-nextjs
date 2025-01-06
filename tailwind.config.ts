@@ -49,7 +49,18 @@ export default {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+        yugioh: {
+          ritual: '#4169E1',
+          xyz: '#000000',
+          synchro: '#FFFFFF',
+          fusion: '#8E44AD',
+          link: '#1E40AF',
+          trap: '#FF69B4',
+          magic: '#2E8B57',
+          effect: '#FFA500',
+          normal: '#FFFF00',
+        }
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -59,4 +70,18 @@ export default {
   	}
   },
   plugins: [require("tailwindcss-animate")],
+  safelist: [
+    {
+      pattern: /bg-yugioh-.+/,
+    },
+    {
+      pattern: /from-.*\/20/,
+    },
+    {
+      pattern: /via-.*\/20/,
+    },
+    {
+      pattern: /to-.*\/50/,
+    },
+  ],
 } satisfies Config;

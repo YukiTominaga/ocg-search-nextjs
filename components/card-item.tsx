@@ -8,9 +8,11 @@ interface CardItemProps {
 }
 
 export function CardItem({ card }: CardItemProps) {
+  const bgColorClass = getCardBackgroundColor(card)
+
   return (
     <Card
-      className={`w-full rounded-2xl shadow-lg overflow-hidden ${getCardBackgroundColor(card)}`}
+      className={`w-full rounded-2xl shadow-lg overflow-hidden ${bgColorClass}`}
     >
       <CardHeader className="relative pb-2">
         <h3 className="text-xl font-bold text-gray-900">
@@ -75,4 +77,4 @@ export function CardItem({ card }: CardItemProps) {
       )}
     </Card>
   )
-} 
+}

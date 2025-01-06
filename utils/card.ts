@@ -11,23 +11,23 @@ export function formatCardText(text: string) {
 
 export function getCardBackgroundColor(card: SearchResult) {
   if (card.is_pendulum) {
-    if (card.is_ritual) return `bg-gradient-to-b from-blue-600/20 via-blue-600/20 to-emerald-600/50`
-    if (card.is_fusion) return `bg-gradient-to-b from-purple-600/20 via-purple-600/20 to-emerald-600/50`
-    if (card.is_synchro) return `bg-gradient-to-b from-white via-white to-emerald-600/50`
-    if (card.is_xyz) return `bg-gradient-to-b from-black/10 via-black/10 to-emerald-600/50`
+    if (card.is_ritual) return `bg-gradient-to-b from-yugioh-ritual/20 via-yugioh-ritual/20 to-emerald-600/50`
+    if (card.is_fusion) return `bg-gradient-to-b from-yugioh-fusion/20 via-yugioh-fusion/20 to-emerald-600/50`
+    if (card.is_synchro) return `bg-gradient-to-b from-yugioh-synchro via-yugioh-synchro to-emerald-600/50`
+    if (card.is_xyz) return `bg-gradient-to-b from-yugioh-xyz/10 via-yugioh-xyz/10 to-emerald-600/50`
     return card.has_effect
-      ? `bg-gradient-to-b from-orange-400/20 via-orange-400/20 to-emerald-600/50`
-      : `bg-gradient-to-b from-yellow-300/20 via-yellow-300/20 to-emerald-600/50`
+      ? `bg-gradient-to-b from-yugioh-effect/20 via-yugioh-effect/20 to-emerald-600/50`
+      : `bg-gradient-to-b from-yugioh-normal/20 via-yugioh-normal/20 to-emerald-600/50`
   }
-  if (card.is_ritual) return 'bg-[#4169E1]/20'    // 青みがかった紫（儀式モンスター）
-  if (card.is_xyz) return 'bg-[#000000]/10'       // 黒（エクシーズモンスター）
-  if (card.is_synchro) return 'bg-[#FFFFFF]'      // 白（シンクロモンスター）
-  if (card.is_fusion) return 'bg-[#8E44AD]/20'    // 紫がかった青（融合モンスター）
-  if (card.is_link) return 'bg-[#1E40AF]/50'      // 濃い青色（リンクモンスター）
-  if (card.is_trap) return 'bg-[#FF69B4]/20'      // ライトピンク（罠カード）
-  if (card.is_magic) return 'bg-[#2E8B57]/20'     // シーグリーン（魔法カード）
-  if (card.has_effect) return 'bg-[#FFA500]/20'   // オレンジ（効果モンスター）
-  return 'bg-[#FFFF00]/20'                        // 黄色（通常モンスター）
+  if (card.is_ritual) return 'bg-yugioh-ritual/20'
+  if (card.is_xyz) return 'bg-yugioh-xyz/10'
+  if (card.is_synchro) return 'bg-yugioh-synchro'
+  if (card.is_fusion) return 'bg-yugioh-fusion/20'
+  if (card.is_link) return 'bg-yugioh-link/50'
+  if (card.is_trap) return 'bg-yugioh-trap/20'
+  if (card.is_magic) return 'bg-yugioh-magic/20'
+  if (card.has_effect) return 'bg-yugioh-effect/20'
+  return 'bg-yugioh-normal/20'
 }
 
 export function getLevelRankLink(card: SearchResult) {

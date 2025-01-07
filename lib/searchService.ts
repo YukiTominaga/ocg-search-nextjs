@@ -28,13 +28,15 @@ export class SearchService {
         servingConfig,
         pageSize,
         embeddingSpec: {
-          embeddingVectors: [{
-            fieldPath: "ml_generate_embedding_result",
-            vector: embedding,
-          }]
+          embeddingVectors: [
+            {
+              fieldPath: 'ml_generate_embedding_result',
+              vector: embedding,
+            },
+          ],
         },
-        rankingExpression: "0 * relevance_score + 1 * dotProduct(ml_generate_embedding_result)",
-        languageCode: "ja",
+        rankingExpression: '0 * relevance_score + 1 * dotProduct(ml_generate_embedding_result)',
+        languageCode: 'ja',
         query,
         queryExpansionSpec: { condition: 'AUTO' },
         filter,

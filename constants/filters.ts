@@ -1,4 +1,4 @@
-import { Filters } from '@/types/filters'
+import { Filters } from '@/types/filters';
 
 export const INITIAL_FILTERS: Filters = {
   // カード種類
@@ -85,4 +85,4 @@ export const INITIAL_FILTERS: Filters = {
   spirit: false,
   tuner: false,
   flip: false,
-} 
+};

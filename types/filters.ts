@@ -83,4 +83,4 @@ export interface Filters {
   spirit: boolean;
   tuner: boolean;
   flip: boolean;
-} 
+}

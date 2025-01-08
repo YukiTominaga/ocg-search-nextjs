@@ -11,23 +11,33 @@ export function formatCardText(text: string) {
 
 export function getCardBackgroundColor(card: SearchResult) {
   if (card.is_pendulum) {
-    if (card.is_ritual) return `bg-gradient-to-b from-yugioh-ritual/20 via-yugioh-ritual/20 to-emerald-600/50`;
-    if (card.is_fusion) return `bg-gradient-to-b from-yugioh-fusion/20 via-yugioh-fusion/20 to-emerald-600/50`;
-    if (card.is_synchro) return `bg-gradient-to-b from-yugioh-synchro via-yugioh-synchro to-emerald-600/50`;
-    if (card.is_xyz) return `bg-gradient-to-b from-yugioh-xyz/10 via-yugioh-xyz/10 to-emerald-600/50`;
-    return card.has_effect
-      ? `bg-gradient-to-b from-yugioh-effect/20 via-yugioh-effect/20 to-emerald-600/50`
-      : `bg-gradient-to-b from-yugioh-normal/20 via-yugioh-normal/20 to-emerald-600/50`;
+    let monsterColor = 'yugioh-normal';
+
+    if (card.is_ritual) {
+      monsterColor = 'yugioh-ritual';
+    } else if (card.is_fusion) {
+      monsterColor = 'yugioh-fusion';
+    } else if (card.is_synchro) {
+      monsterColor = 'yugioh-synchro';
+    } else if (card.is_xyz) {
+      monsterColor = 'yugioh-xyz';
+    } else if (card.has_effect) {
+      monsterColor = 'yugioh-effect';
+    }
+
+    const opacity = card.is_xyz ? '20' : '40';
+    return `bg-gradient-to-b from-${monsterColor}/${opacity} from-30% via-${monsterColor}/${opacity} via-70% via-yugioh-magic/40 via-80% to-yugioh-magic/40 to-100%`;
   }
-  if (card.is_ritual) return 'bg-yugioh-ritual/20';
-  if (card.is_xyz) return 'bg-yugioh-xyz/10';
+
+  if (card.is_ritual) return 'bg-yugioh-ritual/30';
+  if (card.is_xyz) return 'bg-yugioh-xyz/20';
   if (card.is_synchro) return 'bg-yugioh-synchro';
-  if (card.is_fusion) return 'bg-yugioh-fusion/20';
+  if (card.is_fusion) return 'bg-yugioh-fusion/40';
   if (card.is_link) return 'bg-yugioh-link/50';
-  if (card.is_trap) return 'bg-yugioh-trap/20';
-  if (card.is_magic) return 'bg-yugioh-magic/20';
-  if (card.has_effect) return 'bg-yugioh-effect/20';
-  return 'bg-yugioh-normal/20';
+  if (card.is_trap) return 'bg-yugioh-trap/40';
+  if (card.is_magic) return 'bg-yugioh-magic/40';
+  if (card.has_effect) return 'bg-yugioh-effect/40';
+  return 'bg-yugioh-normal/40';
 }
 
 export function getLevelRankLink(card: SearchResult) {

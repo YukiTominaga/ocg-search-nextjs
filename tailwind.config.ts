@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import animate from 'tailwindcss-animate';
 
 export default {
   darkMode: ['class'],
@@ -69,19 +70,29 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [animate],
   safelist: [
+    'bg-gradient-to-b',
     {
       pattern: /bg-yugioh-.+/,
     },
     {
-      pattern: /from-.*\/20/,
+      pattern: /from-yugioh-.+\/[0-9]+/,
     },
     {
-      pattern: /via-.*\/20/,
+      pattern: /via-yugioh-.+\/[0-9]+/,
     },
     {
-      pattern: /to-.*\/50/,
+      pattern: /to-yugioh-.+\/[0-9]+/,
+    },
+    {
+      pattern: /from-[0-9]+%/,
+    },
+    {
+      pattern: /via-[0-9]+%/,
+    },
+    {
+      pattern: /to-[0-9]+%/,
     },
   ],
 } satisfies Config;

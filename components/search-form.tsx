@@ -1,14 +1,13 @@
 import { Search } from 'lucide-react';
-import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 
 interface SearchFormProps {
-  onSearch: (query: string, filterString?: string) => Promise<void>;
+  onSearch: (query: string) => Promise<void>;
+  searchQuery: string;
+  onSearchQueryChange: (query: string) => void;
 }
 
-export function SearchForm({ onSearch }: SearchFormProps) {
-  const [searchQuery, setSearchQuery] = useState('');
-
+export function SearchForm({ onSearch, searchQuery, onSearchQueryChange }: SearchFormProps) {
   const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!searchQuery.trim()) return;
@@ -16,7 +15,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
+    onSearchQueryChange(event.target.value);
   };
 
   return (

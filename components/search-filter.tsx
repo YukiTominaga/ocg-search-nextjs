@@ -87,9 +87,10 @@ interface Filters {
 
 interface SearchFilterProps {
   onFilterChange: (filters: Filters) => void;
+  onSearch: () => void;
 }
 
-export function SearchFilter({ onFilterChange }: SearchFilterProps) {
+export function SearchFilter({ onFilterChange, onSearch }: SearchFilterProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [filters, setFilters] = useState<Filters>({
     normal: false,
@@ -258,8 +259,17 @@ export function SearchFilter({ onFilterChange }: SearchFilterProps) {
     onFilterChange(resetFilters);
   };
 
+  const handleOpenChange = (open: boolean) => {
+    setIsOpen(open);
+  };
+
+  const handleOkClick = () => {
+    setIsOpen(false);
+    onSearch();
+  };
+
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <Button variant="outline" size="default" className="flex shrink-0 items-center gap-2">
           <SlidersHorizontal className="h-4 w-4" />
@@ -861,7 +871,7 @@ export function SearchFilter({ onFilterChange }: SearchFilterProps) {
           <Button variant="outline" size="icon" onClick={handleReset} className="h-8 w-8">
             <Trash2 className="h-4 w-4" />
           </Button>
-          <Button variant="default" size="sm" onClick={() => setIsOpen(false)}>
+          <Button variant="default" size="sm" onClick={handleOkClick}>
             OK
           </Button>
         </div>

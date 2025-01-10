@@ -88,9 +88,10 @@ interface Filters {
 interface SearchFilterProps {
   onFilterChange: (filters: Filters) => void;
   onSearch: () => void;
+  searchQuery: string;
 }
 
-export function SearchFilter({ onFilterChange, onSearch }: SearchFilterProps) {
+export function SearchFilter({ onFilterChange, onSearch, searchQuery }: SearchFilterProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [filters, setFilters] = useState<Filters>({
     normal: false,
@@ -265,7 +266,9 @@ export function SearchFilter({ onFilterChange, onSearch }: SearchFilterProps) {
 
   const handleOkClick = () => {
     setIsOpen(false);
-    onSearch();
+    if (searchQuery.trim().length > 0) {
+      onSearch();
+    }
   };
 
   return (

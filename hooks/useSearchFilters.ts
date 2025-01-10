@@ -209,20 +209,20 @@ export function useSearchFilters() {
 
     // レベル・ランク・LINKのフィルター
     const levelValues = [];
-    if (filters.level_rank_link_0) levelValues.push('0');
-    if (filters.level_rank_link_1) levelValues.push('1');
-    if (filters.level_rank_link_2) levelValues.push('2');
-    if (filters.level_rank_link_3) levelValues.push('3');
-    if (filters.level_rank_link_4) levelValues.push('4');
-    if (filters.level_rank_link_5) levelValues.push('5');
-    if (filters.level_rank_link_6) levelValues.push('6');
-    if (filters.level_rank_link_7) levelValues.push('7');
+    if (filters.level_rank_link_0) levelValues.push('"0"');
+    if (filters.level_rank_link_1) levelValues.push('"1"');
+    if (filters.level_rank_link_2) levelValues.push('"2"');
+    if (filters.level_rank_link_3) levelValues.push('"3"');
+    if (filters.level_rank_link_4) levelValues.push('"4"');
+    if (filters.level_rank_link_5) levelValues.push('"5"');
+    if (filters.level_rank_link_6) levelValues.push('"6"');
+    if (filters.level_rank_link_7) levelValues.push('"7"');
     if (filters.level_rank_link_8) levelValues.push('"8"');
-    if (filters.level_rank_link_9) levelValues.push('9');
-    if (filters.level_rank_link_10) levelValues.push('10');
-    if (filters.level_rank_link_11) levelValues.push('11');
-    if (filters.level_rank_link_12) levelValues.push('12');
-    if (filters.level_rank_link_13) levelValues.push('13');
+    if (filters.level_rank_link_9) levelValues.push('"9"');
+    if (filters.level_rank_link_10) levelValues.push('"10"');
+    if (filters.level_rank_link_11) levelValues.push('"11"');
+    if (filters.level_rank_link_12) levelValues.push('"12"');
+    if (filters.level_rank_link_13) levelValues.push('"13"');
 
     // 能力・その他のフィルター
     const abilityConditions = [];

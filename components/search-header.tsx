@@ -34,7 +34,7 @@ export function SearchHeader({ onSearch }: SearchHeaderProps) {
           <div className="flex-1">
             <SearchForm onSearch={handleSearch} searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
           </div>
-          <SearchFilter onFilterChange={handleFilterChange} onSearch={handleFilterSearch} />
+          <SearchFilter onFilterChange={handleFilterChange} onSearch={handleFilterSearch} searchQuery={searchQuery} />
         </div>
       </div>
     </div>

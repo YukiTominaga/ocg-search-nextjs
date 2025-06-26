@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
           level_rank_link: fields.level_rank_link?.numberValue || null,
           attack: typeof fields.attack?.numberValue === 'number' ? fields.attack.numberValue : null,
           defense: typeof fields.defense?.numberValue === 'number' ? fields.defense.numberValue : null,
-          pendulum_scale: fields.pendulum_scale?.numberValue || null,
+          pendulum_scale: fields.pendulum_scale?.stringValue || null,
           pendulum_effect: fields.pendulum_effect?.stringValue || '',
           type: fields.type?.stringValue || '',
           content: fields.content?.stringValue || '',

@@ -1,9 +1,10 @@
 # ベースイメージ
-FROM node:20-slim AS base
+FROM node:22-alpine AS base
 WORKDIR /app
 
 # 依存関係のインストール
 FROM base AS deps
+RUN apk add --no-cache libc6-compat
 COPY package*.json ./
 RUN npm ci
 
@@ -19,7 +20,7 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
-ENV PORT=8080
+ENV PORT=3000
 
 # 必要なファイルのみをコピー
 COPY --from=builder /app/public ./public
@@ -27,7 +28,7 @@ COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
 # Cloud Run用の設定
-EXPOSE 8080
+EXPOSE 3000
 
 # サーバー起動
 CMD ["node", "server.js"]

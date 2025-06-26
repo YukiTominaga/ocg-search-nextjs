@@ -1,5 +1,5 @@
-import { v1beta } from '@google-cloud/discoveryengine';
 import { SearchConfig } from '@/types/search';
+import { v1beta } from '@google-cloud/discoveryengine';
 import { EmbeddingService } from './embeddingService';
 
 const PAGE_SIZE = Number(process.env.PAGE_SIZE) || 100;

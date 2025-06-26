@@ -1,12 +1,12 @@
-import { Card, CardContent, CardHeader, CardFooter } from '@/components/ui/card';
+import { CounterTrapIcon, ExternalLinkIcon, FieldSpellIcon, InfinityIcon, QuickPlayIcon } from '@/components/icons';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { SearchResult } from '@/types/search';
-import { ExternalLinkIcon, InfinityIcon, CounterTrapIcon, FieldSpellIcon, QuickPlayIcon } from '@/components/icons';
 import {
-  formatCardText,
-  getCardBackgroundColor,
-  getLevelRankLink,
   getAttackDefense,
+  getCardBackgroundColor,
   getCardTypeText,
+  getLevelRankLink,
+  highlightCardText,
 } from '@/utils/card';
 
 interface CardItemProps {
@@ -66,12 +66,12 @@ export function CardItem({ card }: CardItemProps) {
           <>
             <p className="mb-2 whitespace-pre-wrap text-base text-black">
               【ペンデュラム効果】
-              {formatCardText(card.pendulum_effect)}
+              {highlightCardText(card.pendulum_effect, card.content)}
             </p>
             <hr className="my-2 border-t-2 border-gray-500" />
           </>
         )}
-        <p className="whitespace-pre-wrap text-base text-black">{formatCardText(card.card_text)}</p>
+        <p className="whitespace-pre-wrap text-base text-black">{highlightCardText(card.card_text, card.content)}</p>
       </CardContent>
       {card.is_monster && (
         <CardFooter className="flex flex-col space-y-1">

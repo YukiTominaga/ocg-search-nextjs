@@ -1,4 +1,5 @@
 import { SearchResult } from '@/types/search';
+import React from 'react';
 
 export function formatCardText(text: string) {
   return text
@@ -7,6 +8,36 @@ export function formatCardText(text: string) {
     .split('\n')
     .filter(line => line.trim() !== '')
     .join('\n');
+}
+
+export function highlightCardText(text: string, searchContent: string): React.ReactElement {
+  if (!searchContent || !text) {
+    return React.createElement('span', {}, formatCardText(text));
+  }
+
+  const formattedText = formatCardText(text);
+
+  // 検索文字列をエスケープして正規表現を作成
+  const escapeRegExp = (string: string) => {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  };
+
+  const escapedSearchContent = escapeRegExp(searchContent.trim());
+  const regex = new RegExp(`(${escapedSearchContent})`, 'gi');
+
+  const parts = formattedText.split(regex);
+
+  return React.createElement(
+    'span',
+    {},
+    parts.map((part, index) => {
+      const isMatch = new RegExp(`^${escapedSearchContent}$`, 'i').test(part);
+
+      return isMatch
+        ? React.createElement('strong', { key: index, className: 'font-bold' }, part)
+        : React.createElement('span', { key: index }, part);
+    })
+  );
 }
 
 export function getCardBackgroundColor(card: SearchResult) {

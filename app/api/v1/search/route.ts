@@ -1,8 +1,8 @@
 export const dynamic = 'force-dynamic';
 
-import { NextRequest, NextResponse } from 'next/server';
-import { SearchService } from '@/lib/searchService';
 import { searchConfig } from '@/config/searchConfig';
+import { SearchService } from '@/lib/searchService';
+import { NextRequest, NextResponse } from 'next/server';
 
 const searchService = new SearchService(searchConfig);
 
@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
           is_union: fields.is_union?.boolValue || false,
           is_dual: fields.is_dual?.boolValue || false,
           is_toon: fields.is_toon?.boolValue || false,
-          card_text: fields.content?.stringValue || '',
+          card_text: fields.card_text?.stringValue || '',
           is_tuner: fields.is_tuner?.boolValue || false,
           card_name: fields.card_name?.stringValue || '',
           is_pendulum: fields.is_pendulum?.boolValue || false,
@@ -43,12 +43,13 @@ export async function POST(request: NextRequest) {
           is_reverse: fields.is_reverse?.boolValue || false,
           has_effect: fields.has_effect?.boolValue || false,
           is_spirit: fields.is_spirit?.boolValue || false,
-          level_rank_link: fields.level_rank_link?.stringValue || '',
-          attack: fields.attack?.stringValue || '',
-          defense: fields.defense?.stringValue || '',
-          pendulum_scale: fields.pendulum_scale?.stringValue || '',
+          level_rank_link: fields.level_rank_link?.numberValue || null,
+          attack: typeof fields.attack?.numberValue === 'number' ? fields.attack.numberValue : null,
+          defense: typeof fields.defense?.numberValue === 'number' ? fields.defense.numberValue : null,
+          pendulum_scale: fields.pendulum_scale?.numberValue || null,
           pendulum_effect: fields.pendulum_effect?.stringValue || '',
           type: fields.type?.stringValue || '',
+          content: fields.content?.stringValue || '',
         };
       })
       .filter(result => result !== null);

@@ -2,11 +2,17 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: ocg-search
+  annotations:
+    run.googleapis.com/ingress: all
+    run.googleapis.com/default-url-disabled: 'true'
+    run.googleapis.com/invoker-iam-disabled: 'true'
 spec:
   template:
     metadata:
       annotations:
         run.googleapis.com/startup-cpu-boost: 'true'
+        run.googleapis.com/cpu-throttling: 'false'
+        run.googleapis.com/execution-environment: gen2
     spec:
       containerConcurrency: 80
       timeoutSeconds: 60
@@ -20,6 +26,8 @@ spec:
               value: utaha-io
             - name: DATASTORE_ID
               value: ocg-card-list-chunking
+            - name: NODE_ENV
+              value: production
           resources:
             limits:
               cpu: 1000m

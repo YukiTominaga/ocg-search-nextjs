@@ -1,0 +1,70 @@
+name: Claude Auto Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  auto-review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - id: auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          project_id: 'utaha-io'
+          workload_identity_provider: 'projects/103175005729/locations/global/workloadIdentityPools/utaha-pool/providers/tominaga-provider'
+
+      - name: Automatic PR Review
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          timeout_minutes: '60'
+          allowed_tools: 'mcp__github__*,Read,Grep,Glob,Bash,Bash(*)'
+          direct_prompt: |
+            Please review this pull request and provide comprehensive feedback using GitHub's commitable suggestion format.
+
+            CRITICAL: Use commitable code suggestions that can be directly applied via GitHub's "Commit suggestion" button.
+            For any code improvements, use the exact suggestion syntax:
+            ```suggestion
+            // your improved code here
+            ```
+
+            IMPORTANT: For commitable suggestions, ensure you:
+            - Position suggestions at the exact line where changes should be applied
+            - Include complete, executable code blocks that maintain functionality
+            - Provide suggestions that can be committed directly without manual editing
+            - Include the complete context of the code block being modified
+            - Maintain proper indentation and formatting
+            - Include all necessary imports and dependencies
+            - Provide the full function or component when making substantial changes
+            - Use proper line breaks and spacing
+
+            Focus on:
+            - Code quality and best practices
+            - Potential bugs or issues
+            - Performance considerations
+            - Security implications
+            - Documentation updates if needed
+            - TypeScript type safety improvements
+            - React/Next.js best practices
+
+            Guidelines for commitable suggestions:
+            - Only suggest specific, actionable code changes that can be committed directly
+            - For multi-line changes, include the complete context
+            - Include the exact code replacement in suggestion blocks
+            - Explain the reasoning for each suggestion in Japanese
+            - Use inline comments for questions or general feedback
+            - Prioritize suggestions that fix bugs or improve performance
+            - Ensure all suggestions are syntactically correct and functional
+            - Test that suggestions maintain the original functionality while improving the code
+
+            Please use Japanese for all responses, including code comments and explanations.

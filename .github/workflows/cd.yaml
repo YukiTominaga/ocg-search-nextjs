@@ -1,0 +1,61 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # Google Cloudへの認証に必要
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          project_id: 'utaha-io'
+          workload_identity_provider: 'projects/103175005729/locations/global/workloadIdentityPools/utaha-pool/providers/tominaga-provider'
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ steps.auth.outputs.project_id }}
+
+      - name: Log in to Google Artifact Registry
+        run: |
+          gcloud auth configure-docker asia-northeast1-docker.pkg.dev --quiet
+
+      - name: Get short SHA
+        id: get_sha
+        run: echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Build and push Docker image to Artifact Registry
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: asia-northeast1-docker.pkg.dev/utaha-io/utaha/ocg-search:${{ steps.get_sha.outputs.short_sha }}
+          file: builds/Dockerfile
+
+      - name: Update image tag in service.yaml
+        run: |
+          sed -i "s|IMAGE_TAG|${{ steps.get_sha.outputs.short_sha }}|g" builds/service.yaml
+
+      - name: Deploy to Cloud Run using gcloud
+        run: |
+          gcloud run services replace builds/service.yaml \
+            --project ${{ steps.auth.outputs.project_id }} \
+            --region asia-northeast1 \
+            --quiet

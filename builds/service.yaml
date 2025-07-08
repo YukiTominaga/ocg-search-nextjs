@@ -1,0 +1,26 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: ocg-search
+spec:
+  template:
+    metadata:
+      annotations:
+        run.googleapis.com/startup-cpu-boost: 'true'
+    spec:
+      containerConcurrency: 80
+      timeoutSeconds: 60
+      serviceAccountName: ocg-search@utaha-io.iam.gserviceaccount.com
+      containers:
+        - image: asia-northeast1-docker.pkg.dev/utaha-io/utaha/ocg-search:IMAGE_TAG
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PROJECT_ID
+              value: utaha-io
+            - name: DATASTORE_ID
+              value: ocg-card-list-chunking
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 512Mi

@@ -15,7 +15,7 @@ custom_model_max_tokens = 320000
 log_level = "debug"
 
 [vertexai]
-vertex_project = "n2i-form-automation"
+vertex_project = "utaha-io"
 vertex_location = "us-central1"
 
 [pr_reviewer] # /review #

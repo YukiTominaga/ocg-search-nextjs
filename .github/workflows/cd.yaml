@@ -51,11 +51,11 @@ jobs:
 
       - name: Update image tag in service.dev.yaml
         run: |
-          sed -i "s|IMAGE_TAG|${{ steps.get_sha.outputs.short_sha }}|g" builds/service.dev.yaml
+          sed -i "s|IMAGE_TAG|${{ steps.get_sha.outputs.short_sha }}|g" builds/service.yaml
 
       - name: Deploy to Cloud Run using gcloud
         run: |
-          gcloud run services replace builds/service.dev.yaml \
+          gcloud run services replace builds/service.yaml \
             --project ${{ steps.auth.outputs.project_id }} \
             --region asia-northeast1 \
             --quiet

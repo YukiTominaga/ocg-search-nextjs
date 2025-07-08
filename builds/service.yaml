@@ -11,6 +11,8 @@ spec:
     metadata:
       annotations:
         run.googleapis.com/startup-cpu-boost: 'true'
+        run.googleapis.com/cpu-throttling: 'false'
+        run.googleapis.com/execution-environment: gen2
     spec:
       containerConcurrency: 80
       timeoutSeconds: 60
@@ -24,6 +26,8 @@ spec:
               value: utaha-io
             - name: DATASTORE_ID
               value: ocg-card-list-chunking
+            - name: NODE_ENV
+              value: production
           resources:
             limits:
               cpu: 1000m

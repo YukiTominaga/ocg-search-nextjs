@@ -20,8 +20,8 @@ jobs:
       - id: auth
         uses: 'google-github-actions/auth@v2'
         with:
-          project_id: 'n2i-form-automation'
-          workload_identity_provider: 'projects/650030838563/locations/global/workloadIdentityPools/n2i-pool/providers/n2i-provider'
+          project_id: 'utaha-io'
+          workload_identity_provider: 'projects/103175005729/locations/global/workloadIdentityPools/utaha-pool/providers/tominaga-provider'
 
       - name: Automatic PR Review
         uses: anthropics/claude-code-action@beta

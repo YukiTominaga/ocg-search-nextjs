@@ -1,5 +1,5 @@
 import { SlidersHorizontal, Trash2 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -93,6 +93,7 @@ interface SearchFilterProps {
 
 export function SearchFilter({ onFilterChange, onSearch, searchQuery }: SearchFilterProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const initialFiltersRef = useRef<Filters | null>(null);
   const [filters, setFilters] = useState<Filters>({
     normal: false,
     effect: false,
@@ -260,7 +261,25 @@ export function SearchFilter({ onFilterChange, onSearch, searchQuery }: SearchFi
     onFilterChange(resetFilters);
   };
 
+  const compareFilters = (filters1: Filters, filters2: Filters): boolean => {
+    return Object.keys(filters1).some(key => {
+      const filterKey = key as keyof Filters;
+      return filters1[filterKey] !== filters2[filterKey];
+    });
+  };
+
   const handleOpenChange = (open: boolean) => {
+    if (open) {
+      // ダイアログが開く時：現在のフィルター状態を保存
+      initialFiltersRef.current = { ...filters };
+    } else {
+      // ダイアログが閉じる時：フィルターが変更されていれば自動検索実行
+      if (initialFiltersRef.current && compareFilters(initialFiltersRef.current, filters)) {
+        if (searchQuery.trim().length > 0) {
+          onSearch();
+        }
+      }
+    }
     setIsOpen(open);
   };
 

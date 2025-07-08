@@ -262,7 +262,14 @@ export function SearchFilter({ onFilterChange, onSearch, searchQuery }: SearchFi
   };
 
   const compareFilters = (filters1: Filters, filters2: Filters): boolean => {
-    return Object.keys(filters1).some(key => {
+    const keys1 = Object.keys(filters1);
+    const keys2 = Object.keys(filters2);
+
+    if (keys1.length !== keys2.length) {
+      return true;
+    }
+
+    return keys1.some(key => {
       const filterKey = key as keyof Filters;
       return filters1[filterKey] !== filters2[filterKey];
     });

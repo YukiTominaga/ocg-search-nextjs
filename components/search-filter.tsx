@@ -281,10 +281,12 @@ export function SearchFilter({ onFilterChange, onSearch, searchQuery }: SearchFi
       initialFiltersRef.current = { ...filters };
     } else {
       // ダイアログが閉じる時：フィルターが変更されていれば自動検索実行
-      if (initialFiltersRef.current && compareFilters(initialFiltersRef.current, filters)) {
-        if (searchQuery.trim().length > 0) {
-          onSearch();
-        }
+      if (
+        initialFiltersRef.current &&
+        compareFilters(initialFiltersRef.current, filters) &&
+        searchQuery.trim().length > 0
+      ) {
+        onSearch();
       }
     }
     setIsOpen(open);

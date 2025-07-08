@@ -28,7 +28,7 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           timeout_minutes: '60'
-          allowed_tools: 'mcp__github__create_pending_pull_request_review,mcp__github__add_pull_request_review_comment_to_pending_review,mcp__github__submit_pending_pull_request_review,mcp__github__get_pull_request_diff,Read,Grep,Glob'
+          allowed_tools: 'mcp__github__*,Read,Grep,Glob,Bash,Bash(*)'
           direct_prompt: |
             Please review this pull request and provide comprehensive feedback using GitHub's commitable suggestion format.
 
@@ -67,5 +67,4 @@ jobs:
             - Ensure all suggestions are syntactically correct and functional
             - Test that suggestions maintain the original functionality while improving the code
 
-            Provide constructive feedback with specific, commitable suggestions when possible.
             Please use Japanese for all responses, including code comments and explanations.
